@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.views import generic
 from django.shortcuts import render
 from .models import Event
+from .forms import EventForm
 
 
 class IndexView(generic.ListView):
@@ -20,3 +21,7 @@ class EventView(generic.DetailView):
 
 def account(request):
     return render(request, 'eventFinderApp/account.html')
+
+def add_event(request):
+    eventform = EventForm()
+    return render(request, 'eventFinderApp/add-event.html', {'eventform' : eventform})

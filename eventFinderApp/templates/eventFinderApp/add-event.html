@@ -1,0 +1,14 @@
+{% extends "./base.html" %}
+
+{% block content %}
+
+<h2>Add an Event</h2>
+
+<p> insert form here </p>
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{ eventform.as_p }}
+    <input type="submit" value ="Submit">
+</form>
+{% endblock %}
