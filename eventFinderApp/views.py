@@ -46,8 +46,8 @@ def add_event(request):
             # return HttpResponseRedirect('/thanks/')
             form.save()
             return HttpResponseRedirect(reverse('eventFinderApp:index'))
-        return render(request, 'eventFinderApp/addevent.html', {'eventform': form})
+        return render(request, 'eventFinderApp/add-event.html', {'eventform': form})
     # if a GET (or any other method) we'll create a blank form
     else:
         eventform = EventForm()
-        return render(request, 'eventFinderApp/addevent.html', {'eventform': eventform})
+        return render(request, 'eventFinderApp/add-event.html', {'eventform': eventform})
