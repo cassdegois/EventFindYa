@@ -1,8 +1,8 @@
 from django.http import HttpResponse
 from django.views import generic
 from django.shortcuts import render
-from .models import Event, Account
-from .forms import EventForm, AccountForm
+from .models import Event
+from .forms import EventForm
 
 
 class IndexView(generic.ListView):
@@ -18,13 +18,6 @@ class EventView(generic.DetailView):
     model = Event
     template_name = 'eventFinderApp/event.html'
 
-class AccountView(generic.DetailView):
-    model = Account
-    template_name = 'eventFinderApp/account.html'
-
-def account(request):
-    accountform = AccountForm()
-    return render(request, 'eventFinderApp/account.html', {'accountform': accountform})
 
 # class AddEventCreateView(generic.CreateView):
 #     # using the create view we can just give it the variables 
@@ -51,3 +44,6 @@ def add_event(request):
     else:
         eventform = EventForm()
         return render(request, 'eventFinderApp/add-event.html', {'eventform': eventform})
+
+def accounts(request):
+    return render(request, 'eventFinderApp/account.html')
