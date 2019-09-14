@@ -1,7 +1,8 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse, reverse_lazy
 from django.views import generic
 from django.shortcuts import render
-from .models import Event
+from .models import Event, Category
 from .forms import EventForm
 
 
@@ -26,7 +27,7 @@ class EventView(generic.DetailView):
 #     template_name = 'eventFinderApp/addevent.html'
 #     success_url = reverse_lazy('eventFinderApp:index')
 
-def add_event(request):
+def addevent(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
@@ -39,11 +40,11 @@ def add_event(request):
             # return HttpResponseRedirect('/thanks/')
             form.save()
             return HttpResponseRedirect(reverse('eventFinderApp:index'))
-        return render(request, 'eventFinderApp/add-event.html', {'eventform': form})
+        return render(request, 'eventFinderApp/addevent.html', {'eventform': form})
     # if a GET (or any other method) we'll create a blank form
     else:
         eventform = EventForm()
-        return render(request, 'eventFinderApp/add-event.html', {'eventform': eventform})
+        return render(request, 'eventFinderApp/addevent.html', {'eventform': eventform})
 
 def accounts(request):
     return render(request, 'eventFinderApp/account.html')

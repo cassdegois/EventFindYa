@@ -1,6 +1,6 @@
-<nav>
-    <a href="{% url 'eventFinderApp:index' %}">Home</a>
-    <a href="{% url 'eventFinderApp:account' %}">My Account</a>
+<nav class="navbar">
+    <p><a href="{% url 'eventFinderApp:index' %}">Home</a></p>
+    <p><a href="{% url 'eventFinderApp:account' %}">My Account</a></p>
     
     {% if user.is_authenticated %}
     <p>Hi {{ user.username }}</p>

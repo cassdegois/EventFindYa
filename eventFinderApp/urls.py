@@ -13,5 +13,5 @@ urlpatterns = [
     # event-finder/my-account
     path('my-account/', views.accounts, name='account'),
     # event-finder/add-event
-    path('add-event/', views.add_event, name='add_event')
+    path('addevent/', views.addevent, name='addevent')
 ]

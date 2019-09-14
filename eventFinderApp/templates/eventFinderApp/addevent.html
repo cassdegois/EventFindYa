@@ -6,7 +6,7 @@
 
 <p> insert form here </p>
 
-<form action="{% url 'eventFinderApp:add-event' %}" method="post">
+<form action="{% url 'eventFinderApp:addevent' %}" method="post">
     {% csrf_token %}
     {{ eventform.as_p }}
     <input type="submit" value ="Submit">
