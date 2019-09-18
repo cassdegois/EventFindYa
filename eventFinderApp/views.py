@@ -4,7 +4,7 @@ from django.views import generic
 from django.shortcuts import render
 from .models import Event, Category
 from .forms import EventForm
-
+from django.contrib.auth.decorators import login_required
 
 class IndexView(generic.ListView):
     template_name = 'eventFinderApp/index.html'
@@ -14,19 +14,19 @@ class IndexView(generic.ListView):
         '''Return the events.'''
         return Event.objects.all()
 
+class AccountView(generic.ListView):
+    template_name = 'eventFinderApp/account.html'
+    context_object_name = 'events_list'
+
+    def get_queryset(self):
+        '''Return the events.'''
+        return Event.objects.filter(host = self.request.user)
 
 class EventView(generic.DetailView):
     model = Event
     template_name = 'eventFinderApp/event.html'
 
-
-# class AddEventCreateView(generic.CreateView):
-#     # using the create view we can just give it the variables 
-#     # as the functionaity is already built in!
-#     form_class = EventForm
-#     template_name = 'eventFinderApp/addevent.html'
-#     success_url = reverse_lazy('eventFinderApp:index')
-
+@login_required(login_url = 'login')
 def addevent(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
@@ -35,9 +35,10 @@ def addevent(request):
         # check whether it's valid:
         if form.is_valid():
             # process the data in form.cleaned_data as required
-            # ...
-            # redirect to a new URL:
-            # return HttpResponseRedirect('/thanks/')
+            # get new event from the form but don't save it yet
+            new_event = form.save(commit=False)
+            # add host
+            new_event.host = request.user
             form.save()
             return HttpResponseRedirect(reverse('eventFinderApp:index'))
         return render(request, 'eventFinderApp/addevent.html', {'eventform': form})

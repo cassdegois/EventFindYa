@@ -1,6 +1,6 @@
 {% extends "base.html" %}
-
 {% block content %}
+{% load crispy_forms_tags %}
 
 <h2>Add an Event</h2>
 
@@ -8,7 +8,7 @@
 
 <form action="{% url 'eventFinderApp:addevent' %}" method="post">
     {% csrf_token %}
-    {{ eventform.as_p }}
+    {{ eventform|crispy }}
     <input type="submit" value ="Submit">
 </form>
 

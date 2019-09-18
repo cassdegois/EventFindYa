@@ -24,8 +24,8 @@ header {
     margin-bottom: 20px;
 }
 
-nav a {
-    
+.navbar p {
+    padding-left: 20px;
 }
 
 a {

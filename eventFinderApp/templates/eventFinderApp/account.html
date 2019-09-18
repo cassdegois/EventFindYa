@@ -1,7 +1,17 @@
 {% extends "base.html" %}
-
 {% block content %}
-
-You should put the user's account information and upcoming events here.
-
+<!-- link to register screen -->
+{% if user.is_authenticated %}
+   <p>Hi, {{ user.username }}</p>
+   <p>Email: {{ user.email }}</p>
+{% else %}
+   <p><a href="{% url 'login' %}">Login/Register</a></p>
+{% endif %}
+{% if events_list %}
+   {% for event in events_list %}
+       {% include "./detailsBox.html" with event=event %}
+   {% endfor %}
+{% else %}
+   <p>You aren't hosting any events</p>
+   {% endif %}
 {% endblock %}
