@@ -1,5 +1,4 @@
 from django.urls import path
-
 from . import views
 
 
@@ -13,5 +12,5 @@ urlpatterns = [
     # event-finder/my-account
     path('my-account/', views.AccountView.as_view(), name='account'),
     # event-finder/add-event
-    path('addevent/', views.addevent, name='addevent')
+    path('addevent/', views.addevent, name='addevent'),
 ]
