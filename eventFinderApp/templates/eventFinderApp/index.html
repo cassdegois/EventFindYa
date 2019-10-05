@@ -1,12 +1,12 @@
 {% extends "base.html" %}
-{% load bootstrap %}
-
+{% comment %} {% load bootstrap %} {% endcomment %}
+{% load crispy_forms_tags %}
 {% block content %}
 
     <a href="{% url 'eventFinderApp:addevent' %}"><button id="new-event">+ Create new event</button></a>
     
 <form method="GET">
-    {{ filter.form|bootstrap }}
+    {{ filter.form|crispy }}
     <button type="submit" class="btn btn-primary"> Search</button>
 </form>
 
