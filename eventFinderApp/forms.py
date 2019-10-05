@@ -1,4 +1,4 @@
-from django.forms import ModelForm, SplitDateTimeField
+from django.forms import ModelForm, SplitDateTimeField, ValidationError
 from .models import Event, Category
 from django.contrib.admin import widgets
 
