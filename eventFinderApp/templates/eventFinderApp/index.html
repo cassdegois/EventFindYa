@@ -1,11 +1,18 @@
 {% extends "base.html" %}
-
+{% comment %} {% load bootstrap %} {% endcomment %}
+{% load crispy_forms_tags %}
 {% block content %}
 
     <a href="{% url 'eventFinderApp:addevent' %}"><button id="new-event">+ Create new event</button></a>
+    
+<form method="GET">
+    {{ filter.form|crispy }}
+    <button type="submit" class="btn btn-primary"> Search</button>
+</form>
+
     <h3>See what's on!</h3>
     {% if events_list %}
-        {% for event in events_list %}
+        {% for event in filter.qs %}
             {% include "./detailsBox.html" with event=event %}
         {% endfor %}
     {% else %}
